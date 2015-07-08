@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+
 import sys, csv, json, os
 from optparse import OptionParser
 
