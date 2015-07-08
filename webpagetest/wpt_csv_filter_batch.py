@@ -32,8 +32,9 @@ def run(options):
 
 	for f in csv_files:
 		options.file = f
+		print "processing - " + f
 		wptf.run(options)
-		print "..............."
+		print ".......done........"
 
 if __name__ == '__main__':
 

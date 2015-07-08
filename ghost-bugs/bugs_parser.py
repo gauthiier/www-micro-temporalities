@@ -1,5 +1,13 @@
 import sys, json
 
+def reorder_ids(bugs):
+	result = {}
+	for key, info in bugs.iteritems():
+		id = info['aid']
+		result[str(id)] = key
+	return result
+
+
 if __name__ == '__main__':
 
 	fp = sys.stdin
@@ -10,6 +18,7 @@ if __name__ == '__main__':
 		sys.exit('Error loading data... Aborting.')
 
 	apps = data['apps']
+	bugs = reorder_ids(data['bugs'])
 
 	result = {}
 	result['ads'] = []
@@ -18,13 +27,13 @@ if __name__ == '__main__':
 	result['widgets'] = []
 	result['privacy'] = []
 
-
 	hosts = data['firstPartyExceptions']
 
 	for key, info in apps.iteritems():
-		if key in hosts:
+		k = bugs[key] 
+		if k in hosts:
 			urls = []
-			for u in hosts[key]:
+			for u in hosts[k]:
 				if info['cat'] == 'tracker':
 					result['trackers'].append(u)
 				elif info['cat'] == 'ad':

@@ -86,8 +86,12 @@ def run(options):
 	writer = csv.DictWriter(out_csv, fieldnames=csv_fields)
 	writer.writeheader()
 
-
+	last_seq = 0
 	for r in wpt_data:
+		seq = int(r['Sequence Number'])
+		if  seq < last_seq:
+			break
+		last_seq = seq
 		stats['total'] += 1
 		host = r['Host']
 		if any(a in host for a in bugs_data['ads']):
