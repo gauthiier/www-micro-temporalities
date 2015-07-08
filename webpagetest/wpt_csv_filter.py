@@ -4,7 +4,44 @@ import sys, csv, json, os
 from optparse import OptionParser
 
 # list of fileds from the wpt csv file to keep
-csv_fields = ['Connect Time', 'Time to Load (ms)', 'Time to First Byte (ms)', 'Content Type', 'DNS Time', 'Real Start Time (ms)', 'Full Time to Load (ms)', 'Expires', 'Cached', 'Host', 'DNS Start', 'SSL Time', 'Date', 'SSL Negotiation Start', 'Connect End', 'Initiator', 'Image Total Bytes', 'Start Time (ms)', 'URL', 'Content Encoding', 'Cookie Count(out)', 'Bytes In', 'Initiator Line', 'Bytes Out', 'Descriptor', 'Connect Start', 'Time', 'Action', 'Sequence Number', 'CDN Provider', 'DNS End', 'SSL Negotiation End', 'Object Size', 'IP Address', 'End Time (ms)', 'Response Code', 'tracker_type']
+csv_fields = [
+'Date',
+'Time',
+'tracker_type',
+'Sequence Number',
+'Host',
+'IP Address', 
+'URL',
+'Action',
+'Response Code',
+'Content Type',
+'Content Encoding',
+'CDN Provider',
+'Connect Time',
+'Time to Load (ms)',
+'Time to First Byte (ms)',
+'Real Start Time (ms)',
+'Start Time (ms)',
+'End Time (ms)',
+'Full Time to Load (ms)',
+'DNS Time',
+'DNS Start',
+'DNS End',
+'SSL Time',
+'SSL Negotiation Start',
+'SSL Negotiation End',
+'Connect Start',
+'Connect End',
+'Object Size',
+'Bytes In',
+'Bytes Out',
+'Image Total Bytes',
+'Initiator',
+'Initiator Line',
+'Expires',
+'Cached',
+'Cookie Count(out)',
+ ]
 
 def filter_fields(wpt_row, type):
 	for k in wpt_row.keys():
@@ -81,7 +118,7 @@ def run(options):
 			continue			
 		if options.keep:
 			stats['blank'] += 1
-			filter_fields(r, 'n/a')
+			filter_fields(r, '-')
 			writer.writerow(r);
 
 
@@ -94,7 +131,7 @@ def run(options):
 		print "widgets: " + str(stats['widgets']) + ' - ' + str(stats['widgets'] / stats['total']) + '%'
 		print "privacy: " + str(stats['privacy']) + ' - ' + str(stats['privacy'] / stats['total']) + '%'
 		print "..............."
-		print "* JUNK INDEX * " + str((stats['ads'] + stats['trackers'] + stats['analytics'] + stats['widgets'] + stats['privacy']) / stats['total']) + '%'	
+		print "* JUNK RATIO * " + str((stats['ads'] + stats['trackers'] + stats['analytics'] + stats['widgets'] + stats['privacy']) / stats['total']) + '%'	
 
 if __name__ == '__main__':
 
