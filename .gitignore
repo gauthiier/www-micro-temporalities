@@ -1,3 +1,5 @@
 .DS_Stroe
 *.csv
+csv/
 bugs.json
+*.pyc

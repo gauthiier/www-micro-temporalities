@@ -76,7 +76,11 @@ def run(options):
 
 	#write ouput 
 	fname, ext = os.path.splitext(os.path.basename(csv_file))
-	out_csv_filename =  fname + "__filtered" + ext
+
+	if not os.path.exists(options.outputdir):
+		os.makedirs(options.outputdir)
+
+	out_csv_filename =  options.outputdir + fname + "__filtered" + ext
 
 	out_csv = open(out_csv_filename, 'w')
 	writer = csv.DictWriter(out_csv, fieldnames=csv_fields)
@@ -131,7 +135,7 @@ def run(options):
 		print "widgets: " + str(stats['widgets']) + ' - ' + str(stats['widgets'] / stats['total']) + '%'
 		print "privacy: " + str(stats['privacy']) + ' - ' + str(stats['privacy'] / stats['total']) + '%'
 		print "..............."
-		print "* JUNK RATIO * " + str((stats['ads'] + stats['trackers'] + stats['analytics'] + stats['widgets'] + stats['privacy']) / stats['total']) + '%'	
+		print "* JUNK RATIO * " + str((stats['ads'] + stats['trackers'] + stats['analytics'] + stats['widgets'] + stats['privacy']) / stats['total']) + '%'			
 
 if __name__ == '__main__':
 
@@ -140,6 +144,8 @@ if __name__ == '__main__':
 	p.add_option('-b', '--bugs', action="store", help="ghostery (formated) bugs input file")
 	p.add_option('-k', '--keep', action="store_true", help="keeps the non bugs html element")
 	p.add_option('-s', '--stats', action="store_true", help="prints basic stats")
+	p.add_option('-o', '--outputdir', action="store", help="output directory", default="")
+
 
 	options, args = p.parse_args()
 
