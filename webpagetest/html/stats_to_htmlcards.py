@@ -80,6 +80,10 @@ def emit_time(time):
 	str_s += '</div>\n'
 	return str_s
 
+def parse_nbr(name):
+	#wpt_01_[Reddit]_[Amsterdam]_object__filtered
+	return  name.split("_")[1]
+
 if __name__ == '__main__':
 
 	fp = sys.stdin
@@ -99,6 +103,7 @@ if __name__ == '__main__':
 	for e in stats:				
 		card = "<div class='card'>\n"
 		stats = e['stats']
+		card += parse_nbr(e['name']) + '<br>' 
 		card += "\t\t\t" + emit_name(stats['host'], stats['date'], stats['time'])		
 		card += "\t\t\t" + emit_item(stats['items'])
 		card += "\t\t\t" + emit_size(stats['sizes'])
