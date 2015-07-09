@@ -1,13 +1,14 @@
 #!/usr/bin/python2.7
 
-import sys, csv, json, os
+import sys, csv, json, os, re
 from optparse import OptionParser
 
 # list of fileds from the wpt csv file to keep
 csv_fields = [
 'Date',
 'Time',
-'tracker_type',
+'bug_type',
+'bug_name',
 'Sequence Number',
 'Host',
 'IP Address', 
@@ -40,14 +41,24 @@ csv_fields = [
 'Initiator Line',
 'Expires',
 'Cached',
-'Cookie Count(out)',
+'Cookie Count(out)'
  ]
 
-def filter_fields(wpt_row, type):
+# matches a given url to all possible bugs
+def match(url, bugs):
+	for b in bugs:
+		pattern = re.compile(b['pattern'])
+		if(pattern.search(url)):
+			return {'name': b['name'], 'type': b['type'], }
+	return None
+
+# filters the csv file (deleted some columns) and adds the 'tracker type'
+def filter_fields(wpt_row, type, name):
 	for k in wpt_row.keys():
 		if k not in csv_fields:
 			del wpt_row[k]
-	wpt_row['tracker_type'] = type
+	wpt_row['bug_type'] = type
+	wpt_row['bug_name'] = name
 
 def run(options):
 
@@ -72,8 +83,6 @@ def run(options):
 	except Exception, ee:	
 		sys.exit('Error loading bugs data... Aborting.')
 
-	stats = {'total' : 0.0, 'ads': 0.0, 'trackers': 0.0, 'analytics': 0.0, 'widgets': 0.0, 'privacy': 0.0, 'blank': 0.0}
-
 	#write ouput 
 	fname, ext = os.path.splitext(os.path.basename(csv_file))
 
@@ -87,59 +96,24 @@ def run(options):
 	writer.writeheader()
 
 	last_seq = 0
+
 	for r in wpt_data:
 		seq = int(r['Sequence Number'])
 		if  seq < last_seq:
 			break
 		last_seq = seq
-		stats['total'] += 1
-		host = r['Host']
-		if any(a in host for a in bugs_data['ads']):
-#			print "ads: " + host
-			filter_fields(r, 'ad')
-			writer.writerow(r);
-			stats['ads'] += 1
-			continue
-		if any(a in host for a in bugs_data['trackers']):
-#			print "trackers: " + host
-			filter_fields(r, 'tracker')
-			writer.writerow(r);
-			stats['trackers'] += 1
-			continue
-		if any(a in host for a in bugs_data['analytics']):
-#			print "analytics: " + host
-			filter_fields(r, 'analytics')
-			writer.writerow(r);
-			stats['analytics'] += 1
-			continue
-		if any(a in host for a in bugs_data['widgets']):
-#			print "widgets: " + host
-			filter_fields(r, 'widget')
-			writer.writerow(r);
-			stats['widgets'] += 1
-			continue
-		if any(a in host for a in bugs_data['privacy']):
-#			print "privacy: " + host
-			filter_fields(r, 'privacy')
-			writer.writerow(r);
-			stats['privacy'] += 1
-			continue			
-		if options.keep:
-			stats['blank'] += 1
-			filter_fields(r, '-')
-			writer.writerow(r);
 
+		print str(seq)
 
-	if options.stats:
-		print "----- Stats: " + fname + ext + " -----"
-		print "total (elements): " + str(stats['total'])
-		print "ads: " + str(stats['ads']) + ' - ' + str(stats['ads'] / stats['total']) + '%'
-		print "trackers: " + str(stats['trackers']) + ' - ' + str(stats['trackers'] / stats['total']) + '%'
-		print "analytics: " + str(stats['analytics']) + ' - ' + str(stats['analytics'] / stats['total']) + '%'
-		print "widgets: " + str(stats['widgets']) + ' - ' + str(stats['widgets'] / stats['total']) + '%'
-		print "privacy: " + str(stats['privacy']) + ' - ' + str(stats['privacy'] / stats['total']) + '%'
-		print "..............."
-		print "* JUNK RATIO * " + str((stats['ads'] + stats['trackers'] + stats['analytics'] + stats['widgets'] + stats['privacy']) / stats['total']) + '%'			
+		url = r['Host'] + r['URL']
+		bug = match(url, bugs_data['bugs'])
+		if bug:
+			filter_fields(r, bug['type'], bug['name'])
+			writer.writerow(r);
+		else:
+			if options.keep:
+				filter_fields(r, '-', '-')
+				writer.writerow(r);
 
 if __name__ == '__main__':
 
@@ -147,7 +121,6 @@ if __name__ == '__main__':
 	p.add_option('-f', '--file', action="store", help="wpt csv input file")
 	p.add_option('-b', '--bugs', action="store", help="ghostery (formated) bugs input file")
 	p.add_option('-k', '--keep', action="store_true", help="keeps the non bugs html element")
-	p.add_option('-s', '--stats', action="store_true", help="prints basic stats")
 	p.add_option('-o', '--outputdir', action="store", help="output directory", default="")
 
 
