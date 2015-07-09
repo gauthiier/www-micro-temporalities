@@ -101,7 +101,7 @@ if __name__ == '__main__':
 	content = ""
 	content += emit_header()
 	for e in stats:				
-		card = "<div class='card' onclick=\"window.open('" + e['name'] + ".csv.svg" + "','external');\">\n"
+		card = "<div class='card' onclick=\"window.open('img/scores/" + e['name'] + ".csv.svg" + "','external');\">\n"
 		stats = e['stats']
 		card += parse_nbr(e['name']) + '<br>' 
 		card += "\t\t\t" + emit_name(stats['host'], stats['date'], stats['time'])		
