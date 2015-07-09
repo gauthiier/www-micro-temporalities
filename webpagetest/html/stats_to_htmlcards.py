@@ -14,7 +14,7 @@ def emit_header():
 def emit_name(name, date, time):
 	str_s = '<div class="name">' + name + '</div>\n'
 	str_s +=  '<div class="date">' + date + '</div>\n'
-	str_s +=  '<div class="time">' + time + '</div>\n'
+	str_s +=  '<div class="time">' + time + ' CEST</div>\n'
 	return str_s
 
 def string_format_percentage(pct):
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 	content = ""
 	content += emit_header()
 	for e in stats:				
-		card = "<div class='card'>\n"
+		card = "<div class='card' onclick=\"location.href=img/scores/" + e['name'] + ".csv.svg;\">\n"
 		stats = e['stats']
 		card += parse_nbr(e['name']) + '<br>' 
 		card += "\t\t\t" + emit_name(stats['host'], stats['date'], stats['time'])		
