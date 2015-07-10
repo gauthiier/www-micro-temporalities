@@ -45,7 +45,10 @@ def format(e, b):
 	r['content'] = {}
 	r['content']['mime_type'] = e['response']['content']['mimeType']
 	r['content']['size'] = e['response']['content']['size']
-	r['content']['data'] = e['response']['content']['text']
+	if 'text' in e['response']['content']:
+		r['content']['data'] = e['response']['content']['text']
+	else:
+		r['content']['data'] = 'n/a'
 	# timings
 	r['timing'] = e['timings']
 
