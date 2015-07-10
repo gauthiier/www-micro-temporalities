@@ -10,8 +10,7 @@ body {
 	float: left;
 	margin: 1em;
 	width: 20em;
-	background-color: #eeeeff;
-	border-radius: 6px;
+	background-color: #eeeeee;
 }
 
 .card {
@@ -20,8 +19,7 @@ body {
 	display: inline;
 	margin: 1em;
 	width: 20em;
-	background-color: #eeeeee;	
- 	border-radius: 6px;
+	background-color: #eeeeee;
 }
 
 .card:hover {
@@ -38,6 +36,19 @@ body {
 
 table {
 	width: 100%;
+}
+
+a.button {
+	margin: 0.3em;
+	text-align: center;
+	font-size: 0.8em;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    width: 100px;
+    height: 20px;
 }
 
 
