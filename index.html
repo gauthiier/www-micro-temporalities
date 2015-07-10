@@ -10,20 +10,113 @@
 			<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Dutycycle.svg"/>
 			<br>
 			<text>
-				<p>KEYWORDS</p>
-				<p>
-					web bugs, dataveillance, performance optimization, micro-temporalities, network latency, ghostery, webpagetest, news websites
-				</p>
+
+<a href="micro_cards.html">Micro-Cards</a><br> (findings for top 100 news sites, click through on each card for visualizations)
+
+<br><br>
+
+<a href="https://tools.digitalmethods.net/beta/listenToTheTrackers">Listen to the Trackers</a><br> (audio renditions of data for each news website, select a site and .wav or synth)
+
+<br><br>
+
+<a href="har/drudgereport.com+2015-07-08+23-24-20.html">(Experimental) Bugs Forensics</a><br> (text/code renditions of various bugs)
+
+<h2>INTRODUCTION</h2>
+
+<p> 
+This project aims to investigate the web through the micro-temporal logistics of data exchange, zeroing in on the timings of information transfer, the processing and rendering of content, and the presencing of digital objects as they are assembled by the browser. As part of the post-Snowden subtheme of the Digital Methods Summer School 2015 in Amsterdam, we examine these dynamics with an emphasis on devices for the commercial capture of user data or ‘web bugs.’
+</p>
+
+<h2>SUMMARY</h2>
+
+<p>
+Despite a widespread fixation on the real time web and instantaneity, the web is a heterochronic infrastructure. Requesting and receiving data is characterized by different micro-temporalities as information is transmitted over the diverse network segments from multiple servers through a variety of protocols and onto a further array of devices and browsers. Dealing with this complexity is a significant challenge for designers and developers who aim to deliver content as quickly as possible, a task that has become especially challenging following the rise of the mobile web and the increasing fragmentation of technical standards. In this respect, performance optimization has become one subsector of user experience (UX) that uses a range of techniques and strategies to negotiate and manage this complex infrastructure for the timely delivery of content. There is, moreover, often a strong commercial incentive to optimize for speed: excessive loading times, site freezing and crashing have a direct impact on conversion rates and, therefore, profit.
+</p>
+
+<p>
+The web, however, is also subject to competing pressures from other commercial interests and agendas. While designers plan and implement strategies to optimize for speed, the predominance of third party bugs to capture user data takes up a significant portion of network resources. It is difficult to grasp these existing relationships between third parties, developers, advertisers and publishers within this highly distributed assemblage. Speed is affected by tracking, dropping cookies and capturing data, yet making sense of these transactions – which often occur in microseconds through automated machinic processes – is a phenomenological and technical challenge. Trackers do not necessarily render any content onto a page, they are not directly sensible or perceivable in their functioning, yet they contribute to the shifting political economy of the web in significant ways.
+</p>
+
+<p>
+In this respect, the project takes inspiration from recent work in affect theory, post-phenomenology and media studies that aims to conceptualize the mediation of media. For instance, as Mark B. N. Hansen observes in his recent book Feed-Forward, the tendency of twenty-first century media is “to operate at microtemporal scales without any necessary – let alone direct – connection to human sense perception and conscious awareness” (2015: 37). Microsensors and smart devices provide an unprecedented degree of mediated intervention into experience, environmentally transforming the possibilities for sense and perception. For Hansen, these infrastructures “challenge us to construct a relationship with them” (37). A key difficulty here, however, lies with the excessive centralization of resources in contemporary data capitalism when it comes to the chances we have to enact such a relationship – indeed, we face a problematic of ‘unequal deliberation time,’ whereby “time itself becomes an agent of surplus value extraction that operates within a system structurally dedicated to exploiting the imbalance between microtemporal, machinic sensibility and human consciousness” (55). With these challenges in mind, there is a need to construct new interfaces, technologies and devices to render the operations of computational infrastructures salient to human modes of experience and thought. This project aims to do so through visualizations of rendering paths and the sonification of the microtemporal dynamics of webpages as they load in order to feed-forward the presencing of web bugs. 
+</p>
+ 
+<h2>RESEARCH QUESTIONS</h2>
+
+<p> 
+<ul>
+<li>When a webpage loads, how many bugs are loaded and how does it affect the speed of information transfer?</li>
+<li>What is the ‘page weight’ of bugs (trackers, beacons, widgets and other devices)?</li>
+<li>How can we experience the micro-temporalities of the web in different ways?</li>
+</ul>
+</p>
+
+<h2>METHODOLOGY</h2>
+
+<p>
+The project focusses on news webpages, a category of sites that potentially contain high levels of web bugs due to difficulties of monetizing their content. 
+</p>
+
+<h4><i>Data Gathering</i></h4>
+
+<ul>
+<li>We sourced the top 100 global news webpages from Alexa to create an expert list (<a href="http://www.alexa.com/topsites/category/Top/News">www.alexa.com/topsites/category/Top/News</a>)</li>
+<li>These sites were run through the performance optimization tool WebpageTest.org (<a href="http://www.webpagetest.org">www.webpagetest.org</a>) manually to collect detailed information on loading times. We set up the connection from Amsterdam on IISpeed server and collected the data on July 7th and July 8th (specific times are presented in the visualizations). The file ‘raw object data’ was downloaded as a csv for each test. </li>
+<li>In order to identify web bugs in the Webpagetest data, we filtered each spreadsheet using the Ghostery expert list of bugs (<a href="https://www.ghostery.com/update/all?format=json">www.ghostery.com</a>) and highlighted each category: tracker, analytics, ad, privacy and widget. Code for the filtering process are available on <a href="https://github.com/gauthiier/www-micro-temporalities">Github - www-micro-temporalities</a></li>
+</ul>
+
+<h4><i>Visualization</i></h4>
+
+<ul>
+<li>Mock up visualizations were designed along axes to highlight the rendering path and size of each object, and colour code each web bug as it occurs.</li>
+<li>Processing was used to automate the creation of all visualizations, code is available on <a href="https://github.com/gauthiier/www-micro-temporalities">Github - www-micro-temporalities</a></li>
+</ul>
+
+<h4><i>Sonification</i></h4>
+
+<ul>
+<li>All data from the websites were produced as audio using both wav files or as synth. For .wav, the volume of one of 6 types of files is increased every time a new tracker of that type starts loading.  For synth, the frequencies of 6 distinct tones are increased every time a new tracker of that type starts loading. The frequency is decreased when the tracker finishes.</li>
+</ul>
 
 
-				<p>INTRODUCTION</p>
-				<p>
-					According to marketing literature on performance optimization, the average time 
-				</p>
+<h2>FINDINGS</h2>
 
-				<a href="micro_cards.html">Mircro Cards</a>
+<p>
+Data reveals the variety of design strategies and intentionality that characterizes commercial news sites, raising significant questions regarding the business models and complex interrelationships between first and third party actors across the commercial web. 
+</p>
 
-				<br>
+<ul>
+<li>Some news websites are particularly loaded with tracking elements from a micro-temporal scale (81% Topix.com; 72% Drudge Report; 63% The Examiner; 62% Seattle Times; 62% The Economist) (- as a result, ‘noisy’ websites)</li>
+
+<li>Types of bugs differ from website to website; some very loaded with beacons, other with advertisements or trackers, reflecting the shifting priorities and business arrangements between digital advertising services and news sites. Further research questions arise as to why, then, the (hidden) content media websites differs, and sometimes even drastically. 
+	What is the nature of their difference?</li>
+
+<li>Web performance is in some cases significantly affected by bugs from a micro-temporal scale and on the aggregate regarding network resources. This highlights a potential source of tension or struggle within the design industry regarding the capacity to develop pages within specific business models and arrangements; in other words, commerce should to be added to the equation of aesthetics and performance.</li>
+
+<li>From a more conceptual perspective, the project demonstrates the possibility to experience micro-temporalities - visually and sonically - and represent findings in alternative forms. [Interest in understand results past theory - past a linear reading of data. Particular method to tackle fact that these elements (trackers, etc) are well hidden, and need to be exposed to users.] </li>
+
+<li>Finally, the project reveals the possibility to carry out ‘phenomenological’ research on the sub-perceptual or pre-cognitive dimensions of digital media. As digital media diversifies in content and ‘structure’, there is need to find more intuitive ways to understand and experience it, or understand it by experiencing it. </li>
+</ul>
+
+<h2>FURTHER RESEARCH</h2>
+
+<ul>
+<li>As the project exposes the hidden through sensory representations, the visual compositions and musical experiences can become tools for unique interpretation and reflection on web interfaces. These representations might be used to start conversations with designers and developers about the composition of their sites.</li>
+
+<li>Further investigations might be carried out on the temporal footprint of specific trackers across several news sites to see/hear how load patterns vary in different ecosystems. Do trackers sound the same across all sites? </li>
+<li>A site-by-site load comparison can be conducted. Do we see consistent patterns across multiple sites?</li>
+<li>Our investigation looked specifically at news sites. Do non-news sites have drastically different compositions?</li>
+<li>How does the exposure of a website’s ‘innards’ influence the way people interact with the site?</li>
+<li>Where and how can we locate a user’s agency and deliberation to choose how to navigate a website? </li>
+</ul>
+
+<h2>KEYWORDS</h2>
+ 
+<p>web tracking, performance optimization, micro-temporalities, network latency, ghostery, webpagetest, news websites</p>
+ 
+<h2>TEAM MEMBERS</h2>
+ 
+<p>Erik Borra, Kim Burgas, Michael Dieter, Javier Trujillo Garcia, David Gauthier, Emillie de Keulenaar</p>
 			</text>
 	</div>		
 </body>
