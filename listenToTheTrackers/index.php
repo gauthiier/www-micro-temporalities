@@ -168,12 +168,17 @@ if (isset($_GET['render']) && !empty($_GET['render']) && in_array($_GET['render'
                     gainNode.connect(context.destination);
                     gainNode.gain.value = gainValue;
 
-                    oscillator[tracker].type = 'sine';
-
+                    if (tracker == "tracker" || tracker == "ad") 
+                        oscillator[tracker].type = 'square';
+                    else if (tracker == "widget" || tracker == "privacy")
+                        oscillator[tracker].type = 'triangle';
+                    else
+                        oscillator[tracker].type = 'sine';
 
                     // oscillator.start(0);
                 };
-                var sounds = {'-': 50, 'analytics': 250, 'widget': 450, 'ad': 650, 'tracker': 850, 'privacy': 1050};
+                //var sounds = {'-': 50, 'analytics': 250, 'widget': 450, 'ad': 650, 'tracker': 850, 'privacy': 1050};
+                var sounds = {'-': 150, 'analytics': 350, 'widget': 150, 'ad': 150, 'tracker': 350, 'privacy': 350};
             </script>
         <?php } ?>
         <script type="text/javascript">
@@ -262,16 +267,16 @@ if (isset($_GET['render']) && !empty($_GET['render']) && in_array($_GET['render'
                 }
                 ?>
             </select>
-            <input type='radio' name='render' value='wav'<?php echo ($render == "wav"?" checked":""); ?>>wav</input>
-            <input type='radio' name='render' value='synth'<?php echo ($render == "synth"?" checked":""); ?>>synth</input>
+            <input type='radio' name='render' value='wav'<?php echo ($render == "wav" ? " checked" : ""); ?>>wav</input>
+            <input type='radio' name='render' value='synth'<?php echo ($render == "synth" ? " checked" : ""); ?>>synth</input>
             <input type="button" value="Listen to the trackers" onclick="startCounter()">
             <!--<input type="button" value="Stop" onclick="stopCounter()">-->
         </form>
         <br>
         <?php
-        if($render == "wav")
+        if ($render == "wav")
             print "Listening to wav. The volume of one of 6 types of .wav files is increased every time a new tracker of that type starts loading. The sound is decreased when the tracker finishes<br>";
-        elseif($render == "synth")
+        elseif ($render == "synth")
             print "Listening to synth. The frequencies of 6 distinct tones are increased every time a new tracker of that type starts loading. The frequency is decreased when the tracker finishes<br>";
         ?>
         <br>
@@ -279,7 +284,7 @@ if (isset($_GET['render']) && !empty($_GET['render']) && in_array($_GET['render'
         <br>
         Trackers start at <span id='tracker_min'></span>ms and end at <span id='tracker_max'></span>ms<br><br>
         Replaying microseconds: <span id="counter">0ms</span><br>
-        
+
         <br>
         <div id='volumes'></div>
     </body>
