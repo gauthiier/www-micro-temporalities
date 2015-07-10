@@ -1,0 +1,70 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.agent {
+	padding: 1.5em;
+	float: left;
+	margin: 1em;
+	width: 20em;
+	background-color: #eeeeee;
+}
+
+.card {
+	padding: 1.5em;
+	float: left;
+	display: inline;
+	margin: 1em;
+	width: 45em;
+	background-color: #eeeeee;
+	border-radius: 6px;
+}
+
+.bug {
+	padding: 0.5em;
+	border-radius: 6px;
+}
+
+.data {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	word-wrap: break-word;
+}
+
+.name {
+	font-weight: bold;
+}
+
+.code {
+	word-wrap: break-word;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+}
+
+.ad {
+	background-color: rgba(0, 191, 243, 0.9);
+}
+
+.analytics {
+	background-color: rgba(163, 170, 64, 0.9);
+}
+
+.tracker {
+	background-color: rgba(208, 18, 49, 0.9);
+}
+.widget {
+	background-color: rgba(0, 154, 138, 0.9);
+}
+.privacy {
+	background-color: rgba(251, 88, 37, 0.9);
+}
+
+
+table {
+	width: 100%;
+}
+
+
