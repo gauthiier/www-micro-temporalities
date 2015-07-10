@@ -10,7 +10,8 @@ body {
 	float: left;
 	margin: 1em;
 	width: 20em;
-	background-color: #eeeeee;
+	background-color: #eeeeff;
+	border-radius: 6px;
 }
 
 .card {
@@ -19,7 +20,8 @@ body {
 	display: inline;
 	margin: 1em;
 	width: 20em;
-	background-color: #eeeeee;
+	background-color: #eeeeee;	
+ 	border-radius: 6px;
 }
 
 .card:hover {
