@@ -101,7 +101,7 @@ if __name__ == '__main__':
 	content = ""
 	content += emit_header()
 	for e in stats:				
-		card = "<div class='card' onclick=\"window.open('img/scores/" + e['name'] + ".csv.svg" + "','external');\">\n"
+		card = "<div class='card' onclick=\"window.open('synthesis/?ref=" + e['name'] + ".csv" + "');\">\n"
 		stats = e['stats']
 		card += parse_nbr(e['name']) + '<br>' 
 		card += "\t\t\t" + emit_name(stats['host'], stats['date'], stats['time'])		
@@ -109,9 +109,7 @@ if __name__ == '__main__':
 		card += "\t\t\t" + emit_size(stats['sizes'])
 		card += "\t\t\t" + emit_time(stats['times'])
 		card += "<br>"
-		card += "<a target=\"_blank\" href=\"https://tools.digitalmethods.net/beta/listenToTheTrackers/?csv=" + e['name'] + ".csv&render=synth\" class=\"button\">Listen (synth)</a>"
-		card += "<br>"
-		card += "<a target=\"_blank\" href=\"https://tools.digitalmethods.net/beta/listenToTheTrackers/?csv=" + e['name'] + ".csv&render=wav\" class=\"button\">Listen (wav)</a>"
+		card += "<a target=\"_blank\" href=\"synthesis/?ref=" + e['name'] + ".csv\" class=\"button\">View/Listen</a>"
 		card += "</div>\n"
 		content += card
 
