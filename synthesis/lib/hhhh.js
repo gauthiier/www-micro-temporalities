@@ -3,7 +3,7 @@ var modfactor = 750.0;
 var modfactor_gain = 10750.0;
 
 function create_none_synth() {
-	var s = new FMSynth('triangle', 100, 'saw', 2, 300);
+	var s = new FMSynth('triangle', 100, 'sawtooth', 2, 300);
 	s.add_filter(new LowPassFilter());
 	s.update = function(val) {
 		this.modulator_freq(val / modfactor);

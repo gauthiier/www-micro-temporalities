@@ -40,8 +40,8 @@ function FMSynth(waveform_c, freq_c, waveform_m, freq_m, gain_m) {
 
 	this.start = function() {
 		if(!this.started) {
-			this.carrier.osc.start();
-			this.modulator.osc.start();
+			this.carrier.osc.start(0);
+			this.modulator.osc.start(0);
 			this.started = true;
 		} else {
 			this.carrier.gain.gain.value = 1.0;
@@ -78,7 +78,7 @@ function SimpleOscillator(waveform, freq) {
 
 	this.start = function() {
 		if(!this.started) {
-			this.oscillator.osc.start();
+			this.oscillator.osc.start(0);
 			this.started = true;
 		} else {
 			this.oscillator.gain.gain.value = 1.0;
