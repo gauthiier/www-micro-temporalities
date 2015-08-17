@@ -1,0 +1,53 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.agent {
+	padding: 1.5em;
+	float: left;
+	margin: 1em;
+	width: 20em;
+	background-color: #eeeeee;
+}
+
+.card {
+	padding: 1.5em;
+	float: left;
+	display: inline;
+	margin: 1em;
+	width: 20em;
+	background-color: #eeeeee;
+}
+
+.card:hover {
+	background-color: #eeeeff;
+}
+
+.data {
+	margin-left: 0.5em;
+}
+
+.name {
+	font-weight: bold;
+}
+
+table {
+	width: 100%;
+}
+
+a.button {
+	margin: 0.3em;
+	text-align: center;
+	font-size: 0.8em;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    width: 100px;
+    height: 20px;
+}
+
