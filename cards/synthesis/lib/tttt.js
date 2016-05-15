@@ -1,5 +1,5 @@
 
-var svg_repo_url = "http://gauthiier.github.io/www-micro-temporalities/img/scores/";
+var svg_repo_url = "https://gauthiier.github.io/www-micro-temporalities/img/scores/";
 var csv_repo_url = "https://raw.githubusercontent.com/gauthiier/www-micro-temporalities/master/webpagetest/filtered/";
 
 var data_ref = get_param('ref');
